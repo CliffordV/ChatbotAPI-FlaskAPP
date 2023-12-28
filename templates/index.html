@@ -80,6 +80,11 @@
             font-size: 0.9em;
             color: #555;
         }
+        #typingIndicator {
+            /* Styles for typing indicator */
+            color: #888;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
@@ -97,8 +102,9 @@
 
     <div id="chatContainer">
         <div id="messages"></div>
+        <!-- <div id="typingIndicator" class="message bot-message" style="display:none;">Typing...</div> -->
         <form id="chatbotForm" class="message-form" method="post" enctype="multipart/form-data">
-            <textarea name="user_input" placeholder="Type a message..." required></textarea>
+            <textarea name="user_input" id="userInput" placeholder="Type a message..." required></textarea>
             <input type="file" id="fileAttachment" name="file_attachment" style="display:none;" onchange="document.getElementById('fileName').textContent = this.files[0].name">
             <label for="fileAttachment" id="fileLabel">📎 Attach</label>
             <span id="fileName"></span>
@@ -112,13 +118,26 @@
     </div>
 
     <script>
-        document.getElementById('chatbotForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        document.getElementById('userInput').addEventListener('keydown', function(event) {
+            // Check if 'Enter' is pressed without the 'Shift' key
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault(); // Prevent the default action (newline)
+                submitForm(); // Call the submitForm function
+            }
+        });
 
+        function submitForm() {
             var userInput = document.querySelector('textarea[name="user_input"]').value;
-            displayMessage(userInput, 'user-message');
+            var fileAttachment = document.getElementById('fileAttachment');
+            var fileName = fileAttachment.files.length > 0 ? fileAttachment.files[0].name : '';
 
-            var formData = new FormData(this);
+            // Append file name to the message if a file is attached
+            var completeMessage = userInput + (fileName ? '\n\nAttached file: \n' + fileName : '');
+            displayMessage(completeMessage, 'user-message');
+
+            var formData = new FormData(document.getElementById('chatbotForm'));
+            showTypingIndicator(); // Show typing indicator
+
             fetch('/process', {
                 method: 'POST',
                 body: formData
@@ -134,18 +153,41 @@
                 displayMessage('Error occurred', 'bot-message');
             });
 
-            // Clear the input field after sending
+            // Clear the input fields after sending
             document.querySelector('textarea[name="user_input"]').value = '';
-            
-        });
+            document.getElementById('fileAttachment').value = ''; // Reset the file input
+            document.getElementById('fileName').textContent = ''; // Clear the file name display (if you have one)
+        }
 
         function displayMessage(text, className) {
             var messageDiv = document.createElement('div');
             messageDiv.classList.add('message', className);
-            messageDiv.textContent = text;
+            messageDiv.innerHTML = text.replace(/\n/g, '<br>');
             document.getElementById('messages').appendChild(messageDiv);
+            hideTypingIndicator(); // Ensure the typing indicator is removed when a new message is added
         }
-        
+
+        function showTypingIndicator() {
+            var typingIndicator = document.createElement('div');
+            typingIndicator.id = 'typingIndicator';
+            typingIndicator.classList.add('message', 'bot-message');
+            typingIndicator.textContent = 'Typing...';
+            document.getElementById('messages').appendChild(typingIndicator);
+        }
+
+        function hideTypingIndicator() {
+            var typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        document.getElementById('chatbotForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            submitForm();
+        });
+
+
     </script>
 </body>
 </html>
