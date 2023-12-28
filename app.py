@@ -8,7 +8,7 @@ import docx
 app = Flask(__name__)
 
 # Set your OpenAI API key
-openai.api_key = "your-API KEY"
+openai.api_key = "yourAPIKEY"
 
 # Function to handle GPT-3 and GPT-4 model requests
 def handle_gpt_request(model, prompt):
@@ -89,7 +89,7 @@ def CustomChatGPT(user_input, model_choice, uploaded_file=None):
 
     # Determine which model to use
     if model_choice == "GPT-3.5 Turbo":
-        model = "gpt-3.5-turbo-1106"  # Correct identifier for GPT-3.5 Turbo
+        model = "gpt-3.5-turbo-0613"  # Correct identifier for GPT-3.5 Turbo
     elif model_choice == "GPT-4":
         model = "davinci-002"  # Correct identifier for GPT-4
     elif model_choice == "DALL-E":
@@ -112,7 +112,7 @@ def allowed_file(filename):
 def process():
     user_input = request.form['user_input']
     model_choice = request.form['model_choice']
-    uploaded_file = request.files.get('file')
+    uploaded_file = request.files.get('file_attachment')
 
     # Process the uploaded file if there is one
     file_text = ""
