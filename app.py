@@ -8,7 +8,7 @@ import docx
 app = Flask(__name__)
 
 # Set your OpenAI API key
-openai.api_key = "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"
+openai.api_key = "your-API KEY"
 
 # Function to handle GPT-3 and GPT-4 model requests
 def handle_gpt_request(model, prompt):
