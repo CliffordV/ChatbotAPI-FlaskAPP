@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8  # You can change the Python version
+          python-version: 3.7  # You can change the Python version
 
       - name: Install Flask and dependencies
         run: |
