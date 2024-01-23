@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.10  # Use the correct Python version for your project
+          python-version: 3.7  # Use the correct Python version for your project
       
       - name: Set up virtual environment
         run: python -m venv venv
