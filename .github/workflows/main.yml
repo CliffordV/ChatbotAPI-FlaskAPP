@@ -6,11 +6,11 @@ on:
       - main
 
 jobs:
-  your_job_name:
+  build:
     runs-on: ubuntu-latest
 
     env:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Reference the GitHub secret
 
     steps:
       - name: Check out code
@@ -19,10 +19,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.8  # You can change the Python version
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt  # Replace with your requirements file if needed
 
       - name: Run Python script
-        run: python your_script.py
+        run: |
+          # Load the API key from the environment variable
+          export OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}"
+          python your_script.py  # Replace with the name of your Python script
