@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Reference the GitHub secret
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     steps:
       - name: Check out code
@@ -19,10 +19,21 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.10.11  # You can change the Python version
+          python-version: 3.8  # You can change the Python version
+
+      - name: Install Flask and dependencies
+        run: |
+          pip install -r requirements.txt  # Install project-specific dependencies
+          pip install Flask              # Install Flask
+          pip install docx
+          pip install openai
+          pip install --upgrade openai
+          pip install yPDF2
+          pip install mimetypes
+          
 
       - name: Run Python script
         run: |
           # Load the API key from the environment variable
           export OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}"
-          python app.py 
+          python app.py  # Replace with the name of your Python script
