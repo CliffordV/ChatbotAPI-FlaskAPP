@@ -19,18 +19,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8  # Use a compatible Python version (e.g., 3.7 or 3.8)
-
+          python-version: 3.10  # Use the correct Python version for your project
+      
+      - name: Set up virtual environment
+        run: python -m venv venv
+        shell: bash
+      
+      - name: Activate virtual environment
+        run: source venv/bin/activate
+        shell: bash
+      
       - name: Install dependencies
         run: |
-          pip install Flask  # Install Flask
-          pip install PyPDF2  # Install PyPDF2
-          pip install openai
           pip install --upgrade pip
-          pip install --upgrade python-docx  # Upgrade python-docx to the latest version
-
-      - name: Run Python script
-        run: |
-          # Load the API key from the environment variable
-          export OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}"
-          python app.py  # Replace with the name of your Python script
+          pip install -r requirements.txt  # Install dependencies from requirements.txt
+        working-directory: ${{ github.workspace }}
