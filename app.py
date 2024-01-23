@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, jsonify, redirect, url_for
+from decouple import config
 import openai
 import mimetypes
 import PyPDF2
@@ -7,8 +8,8 @@ import docx
 # Initialize Flask app
 app = Flask(__name__)
 
-# Set your OpenAI API key
-openai.api_key = "yourAPIKEY"
+# Load the API key from the .env file
+openai.api_key = config('OPENAI_API_KEY')
 
 # Function to handle GPT-3 and GPT-4 model requests
 def handle_gpt_request(model, prompt):
