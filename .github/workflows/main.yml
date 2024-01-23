@@ -27,7 +27,6 @@ jobs:
           pip install docx
           pip install openai
           pip install --upgrade openai
-          pip install yPDF2
           pip install mimetypes
           
 
