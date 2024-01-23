@@ -19,14 +19,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7  # You can change the Python version
+          python-version: 3.8  # Use a compatible Python version (e.g., 3.7 or 3.8)
 
-      - name: Install Flask and dependencies
+      - name: Install dependencies
         run: |
-          pip install Flask              # Install Flask
-          pip install docx
-          pip install openai
-          pip install PyPDF2
+          pip install -r requirements.txt  # Install project-specific dependencies
+          pip install Flask  # Install Flask
+          pip install PyPDF2  # Install PyPDF2
+          pip install --upgrade python-docx  # Upgrade python-docx to the latest version
 
       - name: Run Python script
         run: |
