@@ -145,6 +145,7 @@
                 return response.text();
             })
             .then(function(text) {
+                console.log('OpenAI Response:', text); // Log the API response to the console
                 displayMessage(text, 'bot-message');
             })
             .catch(function(error) {
