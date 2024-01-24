@@ -3,7 +3,7 @@
 <head>
     <title>Chatbot</title>
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
-    <style>
+    <!-- <style>
         body, html {
             height: 95%;
             margin: 0;
@@ -84,7 +84,7 @@
             color: #888;
             font-style: italic;
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <!-- <div id="chatContainer">
@@ -134,8 +134,8 @@
             var completeMessage = userInput + (fileName ? '\n\nAttached file: \n' + fileName : '');
             displayMessage(completeMessage, 'user-message');
 
-            var formData = new FormData(document.getElementById('chatbotForm'));
-            showTypingIndicator(); // Show typing indicator
+            //var formData = new FormData(document.getElementById('chatbotForm'));
+            //showTypingIndicator(); // Show typing indicator
 
             fetch('/process', {
                 method: 'POST',
@@ -163,10 +163,10 @@
             messageDiv.classList.add('message', className);
             messageDiv.innerHTML = text.replace(/\n/g, '<br>');
             document.getElementById('messages').appendChild(messageDiv);
-            hideTypingIndicator(); // Ensure the typing indicator is removed when a new message is added
+            //hideTypingIndicator(); // Ensure the typing indicator is removed when a new message is added
         }
 
-        function showTypingIndicator() {
+        /* function showTypingIndicator() {
             var typingIndicator = document.createElement('div');
             typingIndicator.id = 'typingIndicator';
             typingIndicator.classList.add('message', 'bot-message');
@@ -179,7 +179,7 @@
             if (typingIndicator) {
                 typingIndicator.remove();
             }
-        }
+        } */
 
         document.getElementById('chatbotForm').addEventListener('submit', function(event) {
             event.preventDefault();
