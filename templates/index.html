@@ -145,7 +145,6 @@
                 return response.text();
             })
             .then(function(text) {
-                console.log("<p>testing101<1p>")
                 displayMessage(text, 'bot-message');
             })
             .catch(function(error) {
@@ -164,7 +163,7 @@
             messageDiv.classList.add('message', className);
             messageDiv.innerHTML = text.replace(/\n/g, '<br>');
             document.getElementById('messages').appendChild(messageDiv);
-            //hideTypingIndicator(); // Ensure the typing indicator is removed when a new message is added
+            hideTypingIndicator(); // Ensure the typing indicator is removed when a new message is added
         }
 
         function showTypingIndicator() {
