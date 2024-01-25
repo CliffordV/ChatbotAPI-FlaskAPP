@@ -125,7 +125,7 @@
             var formData = new FormData(document.getElementById('chatbotForm'));
             showTypingIndicator(); // Show typing indicator
 
-            fetch('/templates/process', {
+            fetch('/process', {
                 method: 'POST',
                 body: formData
             })
