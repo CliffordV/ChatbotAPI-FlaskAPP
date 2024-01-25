@@ -130,6 +130,7 @@
                 body: formData
             })
             .then(function(response) {
+                console.log('OpenAI Response:', text);
                 return response.text();
             })
             .then(function(text) {
