@@ -149,7 +149,7 @@
         function displayMessage(text, className) {
             var messageDiv = document.createElement('div');
             messageDiv.classList.add('message', className);
-            //messageDiv.innerHTML = text.replace(/\n/g, '<br>');
+            messageDiv.innerHTML = text.replace();
             document.getElementById('messages').appendChild(messageDiv);
             hideTypingIndicator(); // Ensure the typing indicator is removed when a new message is added
         }
