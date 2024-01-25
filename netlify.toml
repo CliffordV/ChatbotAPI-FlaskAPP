@@ -1,4 +1,4 @@
 [[redirects]]
-  from = "/templates/process"
+  from = "/process"
   to = "/templates/index.html"
   status = 200
