@@ -87,18 +87,6 @@
     </style> -->
 </head>
 <body>
-    <!-- <div id="chatContainer">
-        <div id="messages"></div>
-        <form id="chatbotForm" class="message-form" method="post" enctype="multipart/form-data">
-            <textarea name="user_input" placeholder="Type a message..." required></textarea>
-            <select name="model_choice" style="display: none;">
-                <option value="GPT-3.5 Turbo">GPT-3.5 Turbo</option>
-                <option value="DALL-E">DALL-E</option>
-            </select>
-            <button type="submit">Send</button>
-        </form>
-    </div> -->
-
     <div id="chatContainer">
         <div id="messages"></div>
         <!-- <div id="typingIndicator" class="message bot-message" style="display:none;">Typing...</div> -->
@@ -161,7 +149,7 @@
         function displayMessage(text, className) {
             var messageDiv = document.createElement('div');
             messageDiv.classList.add('message', className);
-            messageDiv.innerHTML = text.replace(/\n/g, '<br>');
+            //messageDiv.innerHTML = text.replace(/\n/g, '<br>');
             document.getElementById('messages').appendChild(messageDiv);
             hideTypingIndicator(); // Ensure the typing indicator is removed when a new message is added
         }
