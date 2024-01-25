@@ -1,3 +1,5 @@
+from flask_frozen import Freezer
+from myapp import app
 from flask import Flask, request, render_template, jsonify, redirect, url_for
 import os
 import openai
