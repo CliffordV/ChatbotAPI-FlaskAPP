@@ -133,6 +133,7 @@
                 return response.text();
             })
             .then(function(text) {
+                console.log('OpenAI Response:', text);
                 displayMessage(text, 'bot-message');
             })
             .catch(function(error) {
