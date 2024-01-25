@@ -130,7 +130,9 @@
                 body: formData
             })
             .then(function(response) {
-                console.log('OpenAI Response:', text);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
                 return response.text();
             })
             .then(function(text) {
