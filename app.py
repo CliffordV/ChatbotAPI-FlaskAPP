@@ -7,6 +7,11 @@ import mimetypes
 import PyPDF2
 import docx
 
+freezer = Freezer(app)
+
+if __name__ == '__main__':
+    freezer.freeze()
+
 # Initialize Flask app
 app = Flask(__name__)
 
