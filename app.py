@@ -1,16 +1,9 @@
-from flask_frozen import Freezer
-from myapp import app
 from flask import Flask, request, render_template, jsonify, redirect, url_for
 import os
 import openai
 import mimetypes
 import PyPDF2
 import docx
-
-freezer = Freezer(app)
-
-if __name__ == '__main__':
-    freezer.freeze()
 
 # Initialize Flask app
 app = Flask(__name__)
