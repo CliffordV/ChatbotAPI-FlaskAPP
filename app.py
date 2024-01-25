@@ -112,7 +112,7 @@ def CustomChatGPT(user_input, model_choice, uploaded_file=None):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'pdf', 'docx'}
 
-@app.route('/process', methods=['POST'])
+@app.route('/templates/process', methods=['POST'])
 def process():
     user_input = request.form['user_input']
     model_choice = request.form['model_choice']
