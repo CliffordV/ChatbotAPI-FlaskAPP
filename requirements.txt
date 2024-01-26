@@ -2,4 +2,3 @@ Flask==2.2.5
 PyPDF2==3.0.1
 openai==0.28.0
 docx==0.2.4
-Frozen-Flask==0.15
