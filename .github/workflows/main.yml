@@ -33,5 +33,4 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt  # Install dependencies from requirements.txt
-          set FLASK_APP=app.py
         working-directory: ${{ github.workspace }}
